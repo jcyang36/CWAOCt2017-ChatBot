@@ -8,13 +8,22 @@ public class Main {
     public static void main(String[] args) {
         String[] stringList;
         Scanner scan = new Scanner(System.in);
+
         System.out.println("Good day.  What is your problem?  Enter your response here or Q to quit: ");
         String userInput= scan.nextLine();
+
         while (!userInput.equalsIgnoreCase("Q")) {
             stringList = userInput.split(" ");
-            System.out.println(respondDeeper(stringList));
+            boolean check =isPersonal(stringList);
+          if(check) {
+              System.out.println(respondDeeper(stringList));
+          }
+          else{
+              System.out.println(focusOnMe());
+          }
             System.out.println("Enter your response here or Q to quit: ");
             userInput= scan.nextLine();
+            //choice= rand.nextInt(2);
         }
     }
 
@@ -33,13 +42,13 @@ public class Main {
             if (stringList[i].equalsIgnoreCase("I")) {
                 stringList[i] = "you";
             }
-            if (stringList[i].equals("me")) {
+            else if (stringList[i].equals("me")) {
                 stringList[i] = "you";
             }
-            if (stringList[i].equals("my")) {
+            else if (stringList[i].equals("my")) {
                 stringList[i] = "your";
             }
-            if (stringList[i].equals("am")) {
+            else if (stringList[i].equals("am")) {
                 stringList[i] = "are";
             }
         }
@@ -59,5 +68,28 @@ public class Main {
         return result;
 
 
+    }
+
+    public static boolean isPersonal(String[] stringList){
+        for (int i=0;i<stringList.length;i++) {
+
+            if (stringList[i].equalsIgnoreCase("I")) {
+
+                return true;
+            }
+            else if (stringList[i].equals("me")) {
+
+                 return true;
+            }
+            else if (stringList[i].equals("my")) {
+
+                return true;
+            }
+            else if (stringList[i].equals("am")) {
+
+                return true;
+            }
+        }
+        return false;
     }
 }
